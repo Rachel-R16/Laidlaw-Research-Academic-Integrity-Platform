@@ -1,6 +1,6 @@
 # Laidlaw-Research-Academic-Integrity-Platform
 
-This repository contains the research and prototype for a novel system to detect AI-generated content in academic writing by analyzing the **writing process** rather than the final written product. Developed as part of the Laidlaw Research and Leadership Programme (Summer 1), this project aims to create a transparent, ethical, and technically feasible approach to safeguarding academic integrity in the era of generative AI.
+This repository contains the research and prototype for a system to detect AI-generated content in academic writing by analyzing the **writing process** rather than the final written product. Developed as part of the Laidlaw Research and Leadership Programme (Summer 1), this project aims to create a transparent, ethical, and technically feasible approach to safeguarding academic integrity in the era of generative AI.
 
 ## 🧠 Project Overview
 
@@ -20,8 +20,8 @@ By focusing on how a piece of work was created, this system provides a more robu
 
 ## 🔧 Features (Planned / In Progress)
 
-- [x] Basic keystroke logger
-- [x] Interaction logger for AI queries
+- [ ] Basic keystroke logger
+- [ ] Interaction logger for AI queries
 - [ ] Behavior-based anomaly detection
 - [ ] Simulation tests for academic writing scenarios
 
