@@ -55,7 +55,7 @@ The research is structured in three phases:
 
 ## 🙋‍♀️ Author
 
-**\Rachel Ranjith** – Laidlaw Scholar (Trinity College Dublin)
+**Rachel Ranjith** – Laidlaw Scholar (Trinity College Dublin)
 Part of the Laidlaw Research & Leadership Programme (Summer 1)
 
 ## 📢 Disclaimer
