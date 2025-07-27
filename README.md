@@ -20,7 +20,7 @@ By focusing on how a piece of work was created, this system provides a more robu
 
 ## 🔧 Features (Planned / In Progress)
 
-- [ ] Basic keystroke logger
+- [X] Basic keystroke logger
 - [ ] Interaction logger for AI queries
 - [ ] Behavior-based anomaly detection
 - [ ] Simulation tests for academic writing scenarios
@@ -30,20 +30,6 @@ By focusing on how a piece of work was created, this system provides a more robu
 
 > ⚠️ *Note: This is an early-stage prototype. Modules are in development and subject to change.*
 
-To test the logger:
-```bash
-cd prototype/logger
-python keystroke_logger.py
-````
-
-To simulate an AI query logging session:
-
-```bash
-cd prototype/logger
-python ai_interaction_simulator.py
-```
-
-Outputs will be saved in the `results/` folder for analysis.
 
 ## 🧭 Methodology
 
@@ -61,17 +47,3 @@ Part of the Laidlaw Research & Leadership Programme (Summer 1)
 ## 📢 Disclaimer
 
 This repository is part of an academic research project. The prototype is not intended for immediate institutional use without further testing, stakeholder consultation, and ethical review.
-
-
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
