@@ -39,18 +39,53 @@ const DocumentsList: React.FC = () => {
 
       if (!session?.user) return
 
-      const { data, error } = await supabase
+      const { data: docs, error } = await supabase
         .from('documents')
-        .select('id, title, created_at')
+        .select('id, title, created_at, content')
         .eq('owner_id', session.user.id)
         .order('created_at', { ascending: false })
 
       if (error) {
         console.error('Error fetching documents:', error)
-      } else {
-        setDocuments(data || [])
+        setLoading(false)
+        return
       }
 
+      const withSuspicion = await Promise.all(
+        docs.map(async doc => {
+          const { data: logs } = await supabase
+            .from('logs')
+            .select('logdata, suspicious_log_count, total_log_count')
+            .eq('document_id', doc.id)
+
+          let suspiciousLogs = 0
+          let totalLogs = 0
+          let suspiciousChars = 0
+          let totalChars = doc.content.length
+
+          logs?.forEach(log => {
+            suspiciousLogs += log.suspicious_log_count || 0
+            totalLogs += log.total_log_count || 0
+            suspiciousChars += log.logdata.meta.content.length || 0
+          })
+
+          const factor1 = totalLogs > 0 ? suspiciousLogs / totalLogs : 0
+          const factor2 = totalChars > 0 ? suspiciousChars / totalChars : 0
+
+          const suspicionScore = Math.round(((factor1 + factor2) / 2) * 100)
+
+          console.log(`Document: ${doc.title}`)
+          console.log(`Total Logs: ${totalLogs}, Suspicious Logs: ${suspiciousLogs}`)
+          console.log(`Total Chars: ${totalChars}, Suspicious Chars: ${suspiciousChars}`)
+          console.log(`Factor1 (log ratio): ${factor1.toFixed(2)} | Factor2 (char ratio): ${factor2.toFixed(2)}`)
+          console.log(`Final Suspicion Score: ${suspicionScore}%`)
+
+          return { ...doc, suspicionScore }
+        })
+      )
+
+
+      setDocuments(withSuspicion)
       setLoading(false)
     }
 
@@ -81,6 +116,9 @@ const DocumentsList: React.FC = () => {
               >
                 <p className="font-medium">{doc.title || 'Untitled'}</p>
                 <p className="text-sm text-gray-500">{new Date(doc.created_at).toLocaleString()}</p>
+                <p className={`text-sm ${doc.suspicionScore > 30 ? 'text-red-500' : 'text-gray-500'}`}>
+                  External Content Detection: {doc.suspicionScore}%
+                </p>
               </Link>
             </li>
           ))}
